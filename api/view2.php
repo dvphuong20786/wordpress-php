@@ -11,6 +11,21 @@
         th { background-color: #007bff; color: white; }
         tr:nth-child(even) { background-color: #f2f2f2; }
         h1 { text-align: center; color: #333; }
+        .itemdautien { font-size: 26px; font-weight: 500; 
+          animation: sayhi3 1s infinite; flex: 1;
+          letter-spacing: -1px; color: red;
+        }
+        .itemdautien2 { font-size: 22px; font-weight: 500; 
+          animation: sayhi3 1s infinite;  flex: 1;
+          letter-spacing: -1px; color: red;
+        }
+        .itemdautien3 { font-size: 18px; font-weight: 500; 
+          animation: sayhi3 1s infinite; flex: 1;
+          letter-spacing: -1px; color: red;
+        }
+        .itemdautien4 { font-size: 18px; font-weight: 500;  flex: 1;
+          letter-spacing: -1px; color: red;
+        }
     </style>
 </head>
 <body>
@@ -55,7 +70,7 @@
                 <th>account</th>
                 <th>Loss</th>
                 <th>Lãi Ngày</th>
-                <th>Tổng Lãi</th>
+                <th>Tổng</th>
                 <th>VPS</th>
                 <th>Email</th>
                 <!-- <th>Created At</th> -->
@@ -137,7 +152,10 @@
                     tr.innerHTML = `
                         <td>${index + 1}</td>
                         <td>${item.id}</td>
-                        <td>${item.loss}</td>
+                        <td class='${index == 0 ? "itemdautien":""} 
+                        ${index == 1 ? "itemdautien2":""} 
+                        ${index == 2 ? "itemdautien3":""}
+                        ${index == 3 ? "itemdautien4":""}'>${item.loss}</td>
                         <td>${item.laingays}</td>
                         <td>${item.tonglais}</td>
                         <td>${item.ip ?? ''}</td>
@@ -157,7 +175,7 @@
         fetchData();
 
         // Lấy lại dữ liệu mỗi 1 giây
-        setInterval(fetchData, 1000);
+        // setInterval(fetchData, 1000);
     </script>
 </body>
 </html>
