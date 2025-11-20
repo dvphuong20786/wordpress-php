@@ -31,6 +31,8 @@
           top: 0;           /* luôn dính ở trên */ 
           z-index: 10;      /* ưu tiên hiển thị trên các ô khác */
         }
+        .colOff{background:red; color:white; font-weight:bold;}
+        .colOn{background:#2bbe00; color:white; font-weight:bold;}
     </style>
 </head>
 <body>
@@ -78,7 +80,7 @@
                 <th>Tổng</th>
                 <th>VPS</th>
                 <th>Email</th>
-                <!-- <th>Created At</th> -->
+                <th>S</th>
             </tr>
         </thead>
         <tbody>
@@ -154,20 +156,26 @@
                     danhsachtaikhoan.insertAdjacentHTML('beforeend', element);
 
                     const tr = document.createElement('tr');
+                    const firstColumn = item.seconds_passed > 60 
+                      ? "<td class='colOff'>OFF</td>" 
+                      : `<td class='colOn'>${index + 1}</td>`;
                     // <td><a href="ms-rd:fulladdress=${item.ip ?? ''}">${item.ip ?? ''}</a></td>
                     tr.innerHTML = `
-                        <td>${index + 1}</td>
+                        ${firstColumn}
                         <td>${item.id}</td>
-                        <td class='${index == 0 ? "itemdautien":""} 
-                        ${index == 1 ? "itemdautien2":""} 
-                        ${index == 2 ? "itemdautien3":""}
-                        ${index == 3 ? "itemdautien4":""}'>${item.loss}</td>
+                        <td class='${index == 0 ? "itemdautien ":" "} 
+                        ${index == 1 ? "itemdautien2 ":" "} 
+                        ${index == 2 ? "itemdautien3 ":" "}
+                        ${index == 3 ? "itemdautien4 ":" "}
+                        ${item.loss <= -800 ? "itemdautien4 ":" "}
+                        '>${item.loss}</td>
                         <td>${item.laingays}</td>
                         <td>${item.tonglais}</td> 
                         <td>${item.ip ?? ''}</td>
                         <td>${item.gmail}</td> 
+                        <td>${item.seconds_passed}</td>
                     `;
-                    //<td>${item.created_at}</td>
+                    //
                     tbody.appendChild(tr);
  
                 }); 

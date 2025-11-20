@@ -41,31 +41,33 @@ if ($mysqli->connect_error) {
 // =========================
 //  CHUẨN BỊ STATEMENT (INSERT hoặc UPDATE nếu trùng ID)
 // =========================
-$stmt = $mysqli->prepare("
-    INSERT INTO data_log (id, loss, laingays, tonglais, ip, gmail) 
-    VALUES (?, ?, ?, ?, ?, ?)
-    ON DUPLICATE KEY UPDATE
-        loss = VALUES(loss),
-        laingays = VALUES(laingays),
-        tonglais = VALUES(tonglais),
-        ip = VALUES(ip),
-        gmail = VALUES(gmail)
-");
-
-// =========================
-//  LẶP TỪNG BẢN GHI TRONG MẢNG JSON
-// =========================
+$values = [];
+$params = [];
 foreach ($dataArray as $item) {
-    $id = $item['id'];
-    $loss = $item['loss'];
-    $laingays = $item['laingays'];
-    $tonglais = $item['tonglais'];
-    $ip = $item['ip'];
-    $gmail = $item['gmail'];
-
-    $stmt->bind_param("idddss", $id, $loss, $laingays, $tonglais, $ip, $gmail);
-    $stmt->execute();
+    // Khi insert mới, updated_unix = UNIX_TIMESTAMP() → vừa là created, vừa là updated
+    $values[] = "(?, ?, ?, ?, ?, ?, UNIX_TIMESTAMP())";
+    $params[] = $item['id'];
+    $params[] = $item['loss'];
+    $params[] = $item['laingays'];
+    $params[] = $item['tonglais'];
+    $params[] = $item['ip'];
+    $params[] = $item['gmail'];
 }
+
+$sql = "INSERT INTO data_log (id, loss, laingays, tonglais, ip, gmail, updated_unix) VALUES "
+     . implode(",", $values)
+     . " ON DUPLICATE KEY UPDATE
+         loss = VALUES(loss),
+         laingays = VALUES(laingays),
+         tonglais = VALUES(tonglais), 
+         updated_unix = UNIX_TIMESTAMP()"; // update timestamp khi trùng ID
+
+$stmt = $mysqli->prepare($sql);
+$types = str_repeat("idddss", count($dataArray));
+$stmt->bind_param($types, ...$params);
+$stmt->execute();
+
+  
 
 // =========================
 //  ĐÓNG KẾT NỐI
