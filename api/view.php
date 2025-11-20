@@ -18,11 +18,11 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>ID</th>
+                <th>account</th>
                 <th>Loss</th>
-                <th>Lai Ngay</th>
-                <th>Tong Lai</th>
-                <th>IP</th>
+                <th>Lãi Ngày</th>
+                <th>Tổng Lãi</th>
+                <th>VPS</th>
                 <th>Email</th>
                 <!-- <th>Created At</th> -->
             </tr>
