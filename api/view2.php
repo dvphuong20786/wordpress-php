@@ -7,7 +7,7 @@
     <style>
         body { font-family: Arial, sans-serif; padding: 0px; margin: 0px; background: #f7f7f7; }
         table { border-collapse: collapse; width: 100%; background: #fff; }
-        th, td { border: 1px solid #ccc; padding: 8px 4px; text-align: center; }
+        th, td { border: 1px solid #ccc; padding: 4px 4px; text-align: center; }
         th { background-color: #007bff; color: white; }
         tr:nth-child(even) { background-color: #f2f2f2; }
         h1 { text-align: center; color: #333; }
