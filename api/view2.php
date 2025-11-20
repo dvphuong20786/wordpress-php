@@ -175,7 +175,21 @@
         fetchData();
 
         // Lấy lại dữ liệu mỗi 1 giây
-        // setInterval(fetchData, 1000);
+        setInterval(fetchData, 1000);
+
+        function checkWidth() {
+            const width = window.innerWidth; // Lấy chiều rộng cửa sổ
+            const columnToHide = document.getElementById('i-phone-13-14-5'); // Cột bạn muốn ẩn
+
+            if (width <= 1200) {
+                columnToHide.style.display = 'none'; // Ẩn cột
+            } else {
+                columnToHide.style.display = 'block'; // Hiện lại cột khi nhỏ hơn 900px
+            }
+        }
+
+        // Chạy lần đầu
+        checkWidth();
     </script>
 </body>
 </html>
