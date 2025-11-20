@@ -25,6 +25,11 @@
         }
         .itemdautien4 { font-size: 18px; font-weight: 500;  flex: 1;
           letter-spacing: -1px; color: red;
+        } 
+        thead th {
+          position: sticky;
+          top: 0;           /* luôn dính ở trên */ 
+          z-index: 10;      /* ưu tiên hiển thị trên các ô khác */
         }
     </style>
 </head>
@@ -69,7 +74,7 @@
                 <th>#</th>
                 <th>account</th>
                 <th>Loss</th>
-                <th>Lãi Ngày</th>
+                <th>Lãi ngày</th>
                 <th>Tổng</th>
                 <th>VPS</th>
                 <th>Email</th>
@@ -149,6 +154,7 @@
                     danhsachtaikhoan.insertAdjacentHTML('beforeend', element);
 
                     const tr = document.createElement('tr');
+                    // <td><a href="ms-rd:fulladdress=${item.ip ?? ''}">${item.ip ?? ''}</a></td>
                     tr.innerHTML = `
                         <td>${index + 1}</td>
                         <td>${item.id}</td>
@@ -157,10 +163,9 @@
                         ${index == 2 ? "itemdautien3":""}
                         ${index == 3 ? "itemdautien4":""}'>${item.loss}</td>
                         <td>${item.laingays}</td>
-                        <td>${item.tonglais}</td>
+                        <td>${item.tonglais}</td> 
                         <td>${item.ip ?? ''}</td>
-                        <td>${item.gmail}</td>
-                        
+                        <td>${item.gmail}</td> 
                     `;
                     //<td>${item.created_at}</td>
                     tbody.appendChild(tr);
