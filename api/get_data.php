@@ -6,7 +6,7 @@ if ($mysqli->connect_error) {
     exit();
 }
 
-$result = $mysqli->query("SELECT * FROM data_log ORDER BY loss ASC, gmail ASC, ip, id desc");
+$result = $mysqli->query("SELECT * FROM data_log ORDER BY loss ASC, gmail ASC, ip desc, id desc");
 
 $data = [];
 if ($result->num_rows > 0) {
