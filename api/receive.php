@@ -22,8 +22,8 @@ $dataArray = json_decode($json, true); // mảng các object
 // =========================
 //  GHI LOG FILE
 // =========================
-$logFile = __DIR__ . "/log.txt"; 
-file_put_contents($logFile, date("Y-m-d H:i:s") . " - " . $json . "\n", FILE_APPEND);
+// $logFile = __DIR__ . "/log.txt"; 
+// file_put_contents($logFile, date("Y-m-d H:i:s") . " - " . $json . "\n", FILE_APPEND);
 
 // =========================
 //  KẾT NỐI DATABASE
