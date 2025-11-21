@@ -33,6 +33,7 @@
         }
         .colOff{background:red; color:white; font-weight:bold;}
         .colOn{background:#2bbe00; color:white; font-weight:bold;}
+        .colOfftime{ color:red; letter-spacing: -1px; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -156,9 +157,13 @@
                     danhsachtaikhoan.insertAdjacentHTML('beforeend', element);
 
                     const tr = document.createElement('tr');
-                    const firstColumn = item.seconds_passed > 60 
+                    const firstColumn = item.seconds_passed > 60
                       ? "<td class='colOff'>OFF</td>" 
                       : `<td class='colOn'>${index + 1}</td>`;
+                    const lastColumn = item.seconds_passed > 999
+                      ? "<td class='colOfftime'>+999</td>" 
+                      : `<td class='colOntime'>${item.seconds_passed}</td>`;
+                    
                     // <td><a href="ms-rd:fulladdress=${item.ip ?? ''}">${item.ip ?? ''}</a></td>
                     tr.innerHTML = `
                         ${firstColumn}
@@ -173,7 +178,7 @@
                         <td>${item.tonglais}</td> 
                         <td>${item.ip ?? ''}</td>
                         <td>${item.gmail}</td> 
-                        <td>${item.seconds_passed}</td>
+                        ${lastColumn}
                     `;
                     //
                     tbody.appendChild(tr);
