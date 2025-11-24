@@ -174,8 +174,8 @@
                         ${index == 3 ? "itemdautien4 ":" "}
                         ${item.loss <= -800 ? "itemdautien4 ":" "}
                         '>${item.loss}</td>
-                        <td>${item.laingays}</td>
-                        <td>${item.tonglais}</td> 
+                        <td>$${item.laingays}</td>
+                        <td>$${item.tonglais}</td> 
                         <td>${item.ip ?? ''}</td>
                         <td>${item.gmail}</td> 
                         ${lastColumn}
