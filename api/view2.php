@@ -34,6 +34,7 @@
         .colOff{background:red; color:white; font-weight:bold;}
         .colOn{background:#2bbe00; color:white; font-weight:bold;}
         .colOfftime{ color:red; letter-spacing: -1px; font-size: 14px; }
+        .laingay { color: #1c7700ff; font-weight:bold; }
     </style>
 </head>
 <body>
@@ -174,7 +175,7 @@
                         ${index == 3 ? "itemdautien4 ":" "}
                         ${item.loss <= -800 ? "itemdautien4 ":" "}
                         '>${item.loss}</td>
-                        <td>$${item.laingays}</td>
+                        <td class='laingay'>$${item.laingays}</td>
                         <td>$${item.tonglais}</td> 
                         <td>${item.ip ?? ''}</td>
                         <td>${item.gmail}</td> 
