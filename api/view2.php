@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    <link rel="icon" href="img/rectangle.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="view.css">
     <title>TÀI KHOẢN</title>
