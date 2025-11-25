@@ -240,6 +240,7 @@
     align-items: flex-end;
     justify-content: flex-start;
 }
+.second { display: flex; align-items: flex-start; }
 .cen, .second { color: var(--color-black-808080, #929292);
     text-align: left; 
     font-family: "Poppins-Regular", sans-serif;
