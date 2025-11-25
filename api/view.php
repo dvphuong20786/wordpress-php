@@ -132,7 +132,7 @@
                 }
 
                 data.forEach((item, index) => {
-                     
+                      
                     let element =`<div class="glass-material" id='${item.id}'>
                                     <div class="music">
                                     <div class="frame-1171276105">
@@ -193,7 +193,7 @@
                         ${index == 1 ? "itemdautien2 ":" "} 
                         ${index == 2 ? "itemdautien3 ":" "}
                         ${index == 3 ? "itemdautien4 ":" "}
-                        ${item.loss <= -800 ? "itemdautien4 ":" "}
+                        ${(index > 3 && item.loss <= -800) ? "itemdautien4 ":" "}
                         '>${item.loss}</td>
                         <td class='laingay'>$${item.laingays}</td>
                         <td>$${item.tonglais}</td> 
