@@ -97,7 +97,7 @@
                 <th>Tổng</th>
                 <th>VPS</th>
                 <th>Email</th>
-                <th>S</th>
+                <th>P</th>
             </tr>
         </thead>
         <tbody>
