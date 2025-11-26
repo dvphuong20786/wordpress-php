@@ -16,8 +16,8 @@ $sources = [
 //  KẾT NỐI DATABASE
 // =========================
 // $mysqli = new mysqli("localhost", "root", "", "thiennhanweb");
-// $mysqli = new mysqli("sql103.infinityfree.com", "root", "", "if0_40475278_wp646");
-$mysqli = new mysqli("sql103.byetcluster.com", "40475278_3", "QS1p98(4@j", "if0_40475278_wp646");
+$mysqli = new mysqli("sql103.infinityfree.com", "if0_40475278", "8P0ppJtY4JHcfEO", "if0_40475278_wp646");
+// $mysqli = new mysqli("sql103.byetcluster.com", "40475278_3", "QS1p98(4@j", "if0_40475278_wp646");
 
 if ($mysqli->connect_error) {
     http_response_code(500);
@@ -61,7 +61,6 @@ $mergedArray = array_values($merged);
 header('Content-Type: application/json');
 echo json_encode($merged);
 
-return;
 
 if (count($mergedArray) <= 0) { return; }
 

@@ -116,8 +116,13 @@
         });
 
         async function fetchData() {
+          
             try {
-                const response = await fetch('get_data.php');
+               // 1. Gọi receive.php nhưng không cần chờ kết quả
+                fetch('receive.php').catch(err => console.error('Receive failed:', err));
+
+                // 2. Lấy dữ liệu JSON từ get_data.php
+                const response = await fetch('get_data.php'); 
                 const data = await response.json();
 
                 const danhsachtaikhoan = document.getElementById('danhsachtaikhoan');
@@ -126,7 +131,7 @@
                 const tbody = document.querySelector('#data-table tbody');
                 tbody.innerHTML = ''; // xóa dữ liệu cũ
 
-                if (data.length === 0) {
+                if (!data || data.length === 0) {
                     danhsachtaikhoan.innerHTML = 'Chưa có dữ liệu';
                     return;
                 }
@@ -211,19 +216,20 @@
                     tbody.appendChild(tr);
  
                 }); 
-
-
-                const response2 = await fetch('receive.php');
+ 
             } catch (error) {
                 console.error('Lỗi khi fetch dữ liệu:', error);
             }
+
+            // Lấy lại dữ liệu mỗi 1 giây
+            setTimeout(() => { 
+                fetchData();
+            }, 1000);
         }
 
-        // Lấy dữ liệu ngay khi load trang
         fetchData();
 
-        // Lấy lại dữ liệu mỗi 1 giây
-        setInterval(fetchData, 1000);
+        
 
         function checkWidth() {
             const width = window.innerWidth; // Lấy chiều rộng cửa sổ
