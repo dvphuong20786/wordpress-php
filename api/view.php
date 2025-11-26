@@ -211,6 +211,9 @@
                     tbody.appendChild(tr);
  
                 }); 
+
+
+                const response2 = await fetch('receive.php');
             } catch (error) {
                 console.error('Lỗi khi fetch dữ liệu:', error);
             }

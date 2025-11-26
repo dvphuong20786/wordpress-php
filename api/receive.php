@@ -1,34 +1,24 @@
 <?php
-// =========================
-//  BẬT CORS (cho phép domain khác gửi JSON)
-// =========================
-header("Access-Control-Allow-Origin: https://crm.ecmarkets.com");
-header("Access-Control-Allow-Methods: POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header("Access-Control-Allow-Credentials: true");
-
-// Nếu trình duyệt gửi OPTIONS trước (CORS preflight)
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit();
-}
 
 // =========================
-//  NHẬN JSON TỪ BODY
+//  CẤU HÌNH FIREBASE SOURCES
 // =========================
-$json = file_get_contents("php://input");
-$dataArray = json_decode($json, true); // mảng các object
+$sources = [
+    "dvphuong.dev@gmail.com",
+    "dv.francois207.4@gmail.com",
+    "dv.francois207.5@gmail.com",
+    "khanhln935@gmail.com",
+    "tthnguyen18@gmail.com"
+];
 
-// =========================
-//  GHI LOG FILE
-// =========================
-// $logFile = __DIR__ . "/log.txt"; 
-// file_put_contents($logFile, date("Y-m-d H:i:s") . " - " . $json . "\n", FILE_APPEND);
 
 // =========================
 //  KẾT NỐI DATABASE
 // =========================
-$mysqli = new mysqli("localhost", "root", "", "thiennhanweb");
+// $mysqli = new mysqli("localhost", "root", "", "thiennhanweb");
+// $mysqli = new mysqli("sql103.infinityfree.com", "root", "", "if0_40475278_wp646");
+$mysqli = new mysqli("sql103.byetcluster.com", "40475278_3", "QS1p98(4@j", "if0_40475278_wp646");
+
 if ($mysqli->connect_error) {
     http_response_code(500);
     echo json_encode([
@@ -38,36 +28,89 @@ if ($mysqli->connect_error) {
     exit();
 }
 
+
+
 // =========================
-//  CHUẨN BỊ STATEMENT (INSERT hoặc UPDATE nếu trùng ID)
+//  LẤY DATA TỪ FIREBASE VÀ MERGE
 // =========================
-$values = [];
+$merged = [];
+
+foreach ($sources as $sourceKey) {
+    $sourceKey = str_replace('.', '_', $sourceKey);
+    $url = "https://phuongdv-theodoi-default-rtdb.firebaseio.com/data/{$sourceKey}.json"; 
+    
+    $json = @file_get_contents($url);
+    if ($json === false) continue;
+
+    $data = json_decode($json, true);
+    if (!is_array($data)) continue;
+
+    foreach ($data as $item) {
+        // Merge theo ID: nếu trùng thì cập nhật dữ liệu mới nhất
+        $merged[$item['id']] = $item;
+    }
+}
+
+
+
+// Chuyển mảng associative sang indexed array
+$mergedArray = array_values($merged);
+
+
+// Trả dữ liệu JSON
+header('Content-Type: application/json');
+echo json_encode($merged);
+
+return;
+
+if (count($mergedArray) <= 0) { return; }
+
+$placeholders = [];
 $params = [];
-foreach ($dataArray as $item) {
-    // Khi insert mới, updated_unix = UNIX_TIMESTAMP() → vừa là created, vừa là updated
-    $values[] = "(?, ?, ?, ?, ?, ?, UNIX_TIMESTAMP())";
+$types = '';
+
+foreach ($mergedArray as $item) {
+    $placeholders[] = "(?, ?, ?, ?, ?, ?, UNIX_TIMESTAMP())";
     $params[] = $item['id'];
     $params[] = $item['loss'];
     $params[] = $item['laingays'];
     $params[] = $item['tonglais'];
-    $params[] = $item['ip'];
-    $params[] = $item['gmail'];
+    $params[] = $item['ip'] ?? '';
+    $params[] = $item['gmail'] ?? '';
+
+    $types .= 'idddss';
 }
 
 $sql = "INSERT INTO data_log (id, loss, laingays, tonglais, ip, gmail, updated_unix) VALUES "
-     . implode(",", $values)
-     . " ON DUPLICATE KEY UPDATE
-         loss = VALUES(loss),
-         laingays = VALUES(laingays),
-         tonglais = VALUES(tonglais), 
-         updated_unix = UNIX_TIMESTAMP()"; // update timestamp khi trùng ID
+         . implode(",", $placeholders)
+         . " ON DUPLICATE KEY UPDATE
+             loss = VALUES(loss),
+             laingays = VALUES(laingays),
+             tonglais = VALUES(tonglais),
+             ip = VALUES(ip),
+             updated_unix = UNIX_TIMESTAMP()";
+
 
 $stmt = $mysqli->prepare($sql);
-$types = str_repeat("idddss", count($dataArray));
-$stmt->bind_param($types, ...$params);
-$stmt->execute();
+if (!$stmt) {
+    echo json_encode(["status"=>"error","message"=>"Prepare failed: ".$mysqli->error]);
+    exit();
+}
 
-  
+$refs = [];
+foreach ($params as $key => $value) $refs[$key] = &$params[$key];
+array_unshift($refs, $types);
+call_user_func_array([$stmt, 'bind_param'], $refs);
+
+if (!$stmt->execute()) {
+    echo json_encode(["status"=>"error","message"=>"Execute failed: ".$stmt->error]);
+    exit();
+}
+
+$stmt->close();
+$mysqli->close();
+
+
 
 // =========================
 //  ĐÓNG KẾT NỐI
@@ -76,10 +119,11 @@ $stmt->close();
 $mysqli->close();
 
 // =========================
-//  TRẢ LẠI PHẢN HỒI JSON
+//  TRẢ KẾT QUẢ
 // =========================
 echo json_encode([
     "status" => "success",
-    "message" => "Đã lưu dữ liệu JSON vào database (insert hoặc update)",
-    "you_sent" => $dataArray
+    "message" => "Đã merge và lưu dữ liệu từ Firebase",
+    "count" => count($mergedArray),
+    "data" => $mergedArray
 ], JSON_PRETTY_PRINT);

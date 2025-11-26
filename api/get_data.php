@@ -1,5 +1,6 @@
 <?php
-$mysqli = new mysqli("localhost", "root", "", "thiennhanweb");
+// $mysqli = new mysqli("localhost", "root", "", "thiennhanweb");
+$mysqli = new mysqli("sql103.byetcluster.com", "40475278_3", "QS1p98(4@j", "if0_40475278_wp646");
 if ($mysqli->connect_error) {
     http_response_code(500);
     echo json_encode(["error" => "Kết nối database thất bại"]);
