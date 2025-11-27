@@ -13,6 +13,8 @@ if ($mysqli->connect_error) {
 
 $result = $mysqli->query("
     SELECT id, loss, laingays, tonglais, ip, gmail, 
+            (SUM(laingays) OVER (PARTITION BY gmail)) AS sum_by_gmail,
+            (SUM(laingays) OVER (PARTITION BY source)) AS sum_by_source,
            (UNIX_TIMESTAMP() - updated_unix) AS seconds_passed
     FROM data_log
     WHERE source = '{$source_acc}'

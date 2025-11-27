@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <link rel="icon" href="img/rectangle.ico" type="image/x-icon">
+    <link rel="icon" href="img/rectangle1.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -138,9 +138,11 @@
                     danhsachtaikhoan.innerHTML = 'Chưa có dữ liệu';
                     return;
                 }
+                
+                let tonglai= 0;
 
                 data.forEach((item, index) => {
-                      
+                    if(index == 0) tonglai = item.sum_by_source;
                     let element =`<div class="glass-material" id='${item.id}'>
                                     <div class="music">
                                     <div class="frame-1171276105">
@@ -217,7 +219,7 @@
                             </div> 
                             
                         </td>
-                        <td>${item.gmail}</td> 
+                        <td>${item.gmail} ($${item.sum_by_gmail})</td> 
                         ${lastColumn}
                     `;
                     //
@@ -225,6 +227,8 @@
  
                 }); 
  
+                document.title = "($"+tonglai+") Phương dv";
+                
             } catch (error) {
                 console.error('Lỗi khi fetch dữ liệu:', error);
             }
@@ -236,7 +240,7 @@
         }
 
         fetchData();
-
+		
         
 
         function checkWidth() {
