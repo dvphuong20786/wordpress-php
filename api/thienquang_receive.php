@@ -1,6 +1,10 @@
 <?php
 header('Content-Type: application/json');
 
+$source_acc = "thienquang";
+$source_url = "https://thienquang-theodoi-default-rtdb.firebaseio.com";
+//"https://phuongdv-theodoi-default-rtdb.firebaseio.com"
+//"https://thienquang-theodoi-default-rtdb.firebaseio.com"
 $sources = [
     "dvphuong.dev@gmail.com",
     "dv.francois207.4@gmail.com",
@@ -8,18 +12,12 @@ $sources = [
     "khanhln935@gmail.com",
     "tthnguyen18@gmail.com"
 ];
-$source_acc = "phuongdv";
-$source_url = "https://phuongdv-theodoi-default-rtdb.firebaseio.com";
-//"https://phuongdv-theodoi-default-rtdb.firebaseio.com"
-//"https://thienquang-theodoi-default-rtdb.firebaseio.com"
-
 
 $map = [];
 
 foreach ($sources as $source) {
     $sourceKey = str_replace('.', '_', $source);
     $json = @file_get_contents("{$source_url}/{$source_acc}/{$sourceKey}.json"); 
-    
     if ($json === false) continue;
     $data = json_decode($json, true);
     if (!is_array($data)) continue;
@@ -34,10 +32,8 @@ $mergedArray = array_values($map);
 // =========================
 //  KẾT NỐI DATABASE
 // =========================
-// $mysqli = new mysqli("sql103.byetcluster.com", "40475278_3", "QS1p98(4@j", "if0_40475278_wp646");
-// $mysqli = new mysqli("sql103.byetcluster.com", "40475278_3", "QS1p98(4@j", "if0_40475278_wp646");
+//$mysqli = new mysqli("sql103.byetcluster.com", "40475278_3", "QS1p98(4@j", "if0_40475278_wp646");
 $mysqli = new mysqli("sql103.infinityfree.com", "if0_40475278", "8P0ppJtY4JHcfEO", "if0_40475278_wp646");
-
 if ($mysqli->connect_error) {
     http_response_code(500);
     echo json_encode([

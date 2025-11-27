@@ -121,10 +121,10 @@
           
             try {
                // 1. Gọi receive.php nhưng không cần chờ kết quả
-                fetch('receive.php').catch(err => console.error('Receive failed:', err));
+                fetch('thienquang_receive.php').catch(err => console.error('Receive failed:', err));
 
                 // 2. Lấy dữ liệu JSON từ get_data.php
-                const response = await fetch('get_data.php'); 
+                const response = await fetch('thienquang_get_data.php'); 
                 const data = await response.json();
 
                 const danhsachtaikhoan = document.getElementById('danhsachtaikhoan');

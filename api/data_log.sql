@@ -1,15 +1,16 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 20, 2025 at 06:17 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Máy chủ: sql103.byetcluster.com
+-- Thời gian đã tạo: Th10 26, 2025 lúc 11:29 PM
+-- Phiên bản máy phục vụ: 11.4.7-MariaDB
+-- Phiên bản PHP: 7.2.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+07:00";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -18,13 +19,13 @@ SET time_zone = "+07:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `thiennhanweb`
+-- Cơ sở dữ liệu: `if0_40475278_wp646`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_log`
+-- Cấu trúc bảng cho bảng `data_log`
 --
 
 CREATE TABLE `data_log` (
@@ -34,61 +35,72 @@ CREATE TABLE `data_log` (
   `tonglais` decimal(10,2) DEFAULT NULL,
   `ip` varchar(50) DEFAULT NULL,
   `gmail` varchar(100) DEFAULT NULL,
+  `source` varchar(100) DEFAULT NULL,
   `updated_unix` bigint(20) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `data_log`
+-- Đang đổ dữ liệu cho bảng `data_log`
 --
 
-INSERT INTO `data_log` (`id`, `loss`, `laingays`, `tonglais`, `ip`, `gmail`, `updated_unix`) VALUES
-(82005153, -474.83, 0.10, 154.50, '157.15.87.52', 'dvphuong.dev@gmail.com', 1763659037),
-(82005187, -568.42, 0.10, 154.70, '157.15.87.52', 'dvphuong.dev@gmail.com', 1763659037),
-(82005513, -633.96, 0.00, 153.60, '184.164.66.109', 'dvphuong.dev@gmail.com', 1763659037),
-(82005515, -631.28, 0.00, 154.50, '184.164.66.109', 'dvphuong.dev@gmail.com', 1763659037),
-(82007088, -633.08, 0.00, 153.60, '184.164.66.109', 'dvphuong.dev@gmail.com', 1763659037),
-(82007105, -478.54, 0.10, 153.50, '107.178.96.113', 'dvphuong.dev@gmail.com', 1763659037),
-(82007108, -478.74, 0.10, 153.70, '107.178.96.113', 'dvphuong.dev@gmail.com', 1763659037),
-(82007128, -478.89, 0.10, 154.10, '107.178.96.113', 'dvphuong.dev@gmail.com', 1763659037),
-(82008827, -459.38, 0.10, 154.10, '104.161.57.45', 'dv.francois207.4@gmail.com', 1763659038),
-(82008828, -338.98, 0.10, 154.30, '104.161.57.45', 'dv.francois207.4@gmail.com', 1763659038),
-(82008829, -338.87, 0.10, 153.80, '104.161.57.45', 'dv.francois207.4@gmail.com', 1763659038),
-(82008830, -338.87, 0.10, 154.20, '104.161.57.45', 'dv.francois207.4@gmail.com', 1763659038),
-(82008831, -267.00, 0.20, 154.40, '104.161.57.45', 'dv.francois207.4@gmail.com', 1763659038),
-(82008832, -271.85, 0.10, 153.40, '148.163.76.85', 'dv.francois207.4@gmail.com', 1763659038),
-(82008833, -270.53, 0.10, 153.40, '148.163.76.85', 'dv.francois207.4@gmail.com', 1763659038),
-(82008835, -268.94, 0.20, 153.90, '148.163.76.85', 'dv.francois207.4@gmail.com', 1763659038),
-(82008836, -312.65, 0.20, 153.80, '148.163.76.85', 'dv.francois207.4@gmail.com', 1763659038),
-(82008837, -312.76, 0.20, 153.60, '148.163.76.85', 'dv.francois207.4@gmail.com', 1763659038),
-(82009521, -478.98, 0.10, 154.50, '107.178.96.113', 'dvphuong.dev@gmail.com', 1763659037),
-(82009522, -405.28, 0.00, 153.90, '107.178.96.113', 'dvphuong.dev@gmail.com', 1763659037),
-(82010739, -399.01, 0.20, 154.40, '192.34.100.123', 'dv.francois207.5@gmail.com', 1763659038),
-(82010750, -462.66, 0.10, 153.70, '192.34.100.123', 'dv.francois207.5@gmail.com', 1763659038),
-(82010751, -459.15, 0.00, 153.70, '192.34.100.123', 'dv.francois207.5@gmail.com', 1763659038),
-(82010753, -34.02, 0.40, 154.20, '192.34.100.123', 'dv.francois207.5@gmail.com', 1763659038),
-(82010755, -459.26, 0.10, 153.50, '192.34.100.123', 'dv.francois207.5@gmail.com', 1763659038),
-(82010756, -272.17, 0.20, 153.30, '192.34.100.112', 'dv.francois207.5@gmail.com', 1763659038),
-(82010757, -341.35, 0.10, 154.10, '192.34.100.112', 'dv.francois207.5@gmail.com', 1763659038),
-(82010758, -341.65, 0.10, 153.60, '192.34.100.112', 'dv.francois207.5@gmail.com', 1763659038),
-(82010759, -272.18, 0.20, 154.40, '192.34.100.112', 'dv.francois207.5@gmail.com', 1763659038),
-(82010760, -341.87, 0.10, 154.10, '192.34.100.112', 'dv.francois207.5@gmail.com', 1763659038),
-(82011296, 0.00, 0.00, 0.00, NULL, 'khanhln935@gmail.com', 1763659038),
-(82011297, 0.00, 0.00, 0.00, NULL, 'khanhln935@gmail.com', 1763659038),
-(82011298, 0.00, 0.00, 0.00, NULL, 'khanhln935@gmail.com', 1763659038),
-(82011299, 0.00, 0.00, 0.00, NULL, 'khanhln935@gmail.com', 1763659038),
-(82011300, 0.00, 0.00, 0.00, NULL, 'khanhln935@gmail.com', 1763659038),
-(82011301, -448.94, 13.10, 78.90, '104.161.16.99', 'khanhln935@gmail.com', 1763659038),
-(82011302, -529.45, 0.00, 150.40, '157.15.87.52', 'khanhln935@gmail.com', 1763659038),
-(82011303, -557.35, 0.00, 150.30, '157.15.87.52', 'khanhln935@gmail.com', 1763659038),
-(82011305, -653.28, 0.00, 150.10, '184.164.66.109', 'khanhln935@gmail.com', 1763659038),
-(82011306, -653.51, 0.00, 150.30, '184.164.66.109', 'khanhln935@gmail.com', 1763659038);
+INSERT INTO `data_log` (`id`, `loss`, `laingays`, `tonglais`, `ip`, `gmail`, `source`, `updated_unix`) VALUES
+(82005153, '-202.29', '0.50', '135.30', '157.15.87.52 [VN (SG)]', 'dvphuong.dev@gmail.com', 'phuongdv', 1764217798),
+(82005187, '-202.55', '0.40', '134.80', '157.15.87.52 [VN (SG)]', 'dvphuong.dev@gmail.com', 'phuongdv', 1764217798),
+(82005513, '-183.38', '0.30', '134.70', '184.164.66.109 [US (AZ)]', 'dvphuong.dev@gmail.com', 'phuongdv', 1764217798),
+(82005515, '-120.76', '0.40', '134.00', '184.164.66.109 [US (AZ)]', 'dvphuong.dev@gmail.com', 'phuongdv', 1764217798),
+(82007088, '-102.48', '0.40', '133.90', '184.164.66.109 [US (AZ)]', 'dvphuong.dev@gmail.com', 'phuongdv', 1764217798),
+(82007105, '-26.54', '0.80', '136.40', '107.178.96.113 [US (AZ)]', 'dvphuong.dev@gmail.com', 'phuongdv', 1764217798),
+(82007108, '-28.22', '1.10', '137.30', '107.178.96.113 [US (AZ)]', 'dvphuong.dev@gmail.com', 'phuongdv', 1764217798),
+(82007128, '-28.22', '0.80', '137.40', '107.178.96.113 [US (AZ)]', 'dvphuong.dev@gmail.com', 'phuongdv', 1764217798),
+(82008827, '-190.74', '0.40', '153.20', '104.161.57.45 [US (AZ)]', 'dv.francois207.4@gmail.com', 'phuongdv', 1764217798),
+(82008828, '-190.42', '0.30', '153.90', '104.161.57.45 [US (AZ)]', 'dv.francois207.4@gmail.com', 'phuongdv', 1764217798),
+(82008829, '-15.71', '1.20', '155.00', '104.161.57.45 [US (AZ)]', 'dv.francois207.4@gmail.com', 'phuongdv', 1764217798),
+(82008830, '-190.64', '0.40', '155.10', '104.161.57.45 [US (AZ)]', 'dv.francois207.4@gmail.com', 'phuongdv', 1764217798),
+(82008831, '-16.93', '1.10', '154.60', '104.161.57.45 [US (AZ)]', 'dv.francois207.4@gmail.com', 'phuongdv', 1764217798),
+(82008832, '-194.06', '0.30', '154.90', '148.163.76.85 [US (AZ)]', 'dv.francois207.4@gmail.com', 'phuongdv', 1764217798),
+(82008833, '-193.20', '0.30', '155.50', '148.163.76.85 [US (AZ)]', 'dv.francois207.4@gmail.com', 'phuongdv', 1764217798),
+(82008835, '-194.17', '0.20', '154.00', '148.163.76.85 [US (AZ)]', 'dv.francois207.4@gmail.com', 'phuongdv', 1764217798),
+(82008836, '-193.46', '0.20', '154.70', '148.163.76.85 [US (AZ)]', 'dv.francois207.4@gmail.com', 'phuongdv', 1764217798),
+(82008837, '-193.26', '0.30', '156.90', '148.163.76.85 [US (AZ)]', 'dv.francois207.4@gmail.com', 'phuongdv', 1764217798),
+(82009521, '-16.93', '1.20', '137.30', '107.178.96.113 [US (AZ)]', 'dvphuong.dev@gmail.com', 'phuongdv', 1764217798),
+(82009522, '-120.66', '0.30', '136.40', '107.178.96.113 [US (AZ)]', 'dvphuong.dev@gmail.com', 'phuongdv', 1764217798),
+(82010739, '-186.60', '0.50', '151.30', '192.34.100.123 [US (NY)]', 'dv.francois207.5@gmail.com', 'phuongdv', 1764217798),
+(82010750, '-186.65', '0.50', '152.50', '192.34.100.123 [US (NY)]', 'dv.francois207.5@gmail.com', 'phuongdv', 1764217798),
+(82010751, '-109.18', '0.50', '151.70', '192.34.100.123 [US (NY)]', 'dv.francois207.5@gmail.com', 'phuongdv', 1764217798),
+(82010753, '-111.73', '0.40', '151.90', '192.34.100.123 [US (NY)]', 'dv.francois207.5@gmail.com', 'phuongdv', 1764217798),
+(82010755, '-108.96', '0.40', '151.50', '192.34.100.123 [US (NY)]', 'dv.francois207.5@gmail.com', 'phuongdv', 1764217798),
+(82010756, '-109.27', '0.40', '154.30', '192.34.100.112 [US (NY)]', 'dv.francois207.5@gmail.com', 'phuongdv', 1764217798),
+(82010757, '-108.96', '0.40', '154.80', '192.34.100.112 [US (NY)]', 'dv.francois207.5@gmail.com', 'phuongdv', 1764217798),
+(82010758, '-108.96', '0.50', '154.00', '192.34.100.112 [US (NY)]', 'dv.francois207.5@gmail.com', 'phuongdv', 1764217798),
+(82010759, '-186.60', '0.50', '153.90', '192.34.100.112 [US (NY)]', 'dv.francois207.5@gmail.com', 'phuongdv', 1764217798),
+(82010760, '-186.43', '0.50', '152.40', '192.34.100.112 [US (NY)]', 'dv.francois207.5@gmail.com', 'phuongdv', 1764217798),
+(82011282, '0.00', '0.00', '0.00', '', 'tthnguyen18@gmail.com', 'phuongdv', 1764217798),
+(82011283, '0.00', '0.00', '0.00', '', 'tthnguyen18@gmail.com', 'phuongdv', 1764217798),
+(82011285, '0.00', '0.00', '0.00', '', 'tthnguyen18@gmail.com', 'phuongdv', 1764217798),
+(82011286, '0.00', '0.00', '0.00', '', 'tthnguyen18@gmail.com', 'phuongdv', 1764217798),
+(82011287, '0.00', '0.00', '0.00', '', 'tthnguyen18@gmail.com', 'phuongdv', 1764217798),
+(82011288, '0.00', '0.00', '0.00', '', 'tthnguyen18@gmail.com', 'phuongdv', 1764217798),
+(82011290, '0.00', '0.00', '0.00', '216.126.228.235 [US (TX)]', 'tthnguyen18@gmail.com', 'phuongdv', 1764217798),
+(82011291, '0.00', '0.00', '0.00', '216.126.228.235 [US (TX)]', 'tthnguyen18@gmail.com', 'phuongdv', 1764217798),
+(82011292, '-15.71', '1.60', '120.30', '216.126.228.235 [US (TX)]', 'tthnguyen18@gmail.com', 'phuongdv', 1764217798),
+(82011293, '-15.71', '1.60', '118.10', '216.126.228.235 [US (TX)]', 'tthnguyen18@gmail.com', 'phuongdv', 1764217798),
+(82011296, '-15.71', '1.50', '118.80', '216.126.228.235 [US (TX)]', 'khanhln935@gmail.com', 'phuongdv', 1764217798),
+(82011297, '-16.93', '1.60', '116.80', '104.161.16.99 [US (AZ)]', 'khanhln935@gmail.com', 'phuongdv', 1764217798),
+(82011298, '-15.71', '0.90', '115.50', '104.161.16.99 [US (AZ)]', 'khanhln935@gmail.com', 'phuongdv', 1764217798),
+(82011299, '-190.42', '0.40', '117.40', '104.161.16.99 [US (AZ)]', 'khanhln935@gmail.com', 'phuongdv', 1764217798),
+(82011300, '-190.42', '0.30', '117.70', '104.161.16.99 [US (AZ)]', 'khanhln935@gmail.com', 'phuongdv', 1764217798),
+(82011301, '-190.42', '0.30', '112.20', '104.161.16.99 [US (AZ)]', 'khanhln935@gmail.com', 'phuongdv', 1764217798),
+(82011302, '-106.05', '0.40', '117.70', '157.15.87.52 [VN (SG)]', 'khanhln935@gmail.com', 'phuongdv', 1764217798),
+(82011303, '-106.20', '0.50', '119.60', '157.15.87.52 [VN (SG)]', 'khanhln935@gmail.com', 'phuongdv', 1764217798),
+(82011305, '-22.38', '0.50', '118.80', '184.164.66.109 [US (AZ)]', 'khanhln935@gmail.com', 'phuongdv', 1764217798),
+(82011306, '-30.56', '1.40', '121.70', '184.164.66.109 [US (AZ)]', 'khanhln935@gmail.com', 'phuongdv', 1764217798);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `data_log`
+-- Chỉ mục cho bảng `data_log`
 --
 ALTER TABLE `data_log`
   ADD PRIMARY KEY (`id`);
