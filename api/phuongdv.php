@@ -40,7 +40,8 @@
         .laingay { color: #1c7700ff; font-weight:bold; }
         .copyIp { cursor: pointer; }
         .copyIp.visible {display: none;}
-        .text-left { text-align: left; text-indent: 8px;}
+        .text-left { text-align: left; }
+		.td-ip { display: flex; flex-direction: row; align-items: center; gap:8px }
     </style>
     <script type="text/javascript">
         function copyIp(ip){
@@ -167,8 +168,8 @@
                                         <div class="master-ruma">${item.loss}</div>
                                         <span class='cen'>Cen</span>
                                       </div>
-                                      <span class='second'>${item.ip ?? ''}
-                                        <svg onclick="copyIp('${item.ip ?? ``}')" class="copyIp  ${item.ip ?? 'visible'} " id="copyIp" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                      <span class='second'>${item.ip || ''}
+                                        <svg onclick="copyIp('${item.ip || ``}')" class="copyIp  ${item.ip || 'visible'} " id="copyIp" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
                                             <path d="M16 12.9V17.1C16 20.6 14.6 22 11.1 22H6.9C3.4 22 2 20.6 2 17.1V12.9C2 9.4 3.4 8 6.9 8H11.1C14.6 8 16 9.4 16 12.9Z" fill="#daa519"/>
                                             <path d="M17.0998 2H12.8998C9.81668 2 8.37074 3.09409 8.06951 5.73901C8.00649 6.29235 8.46476 6.75 9.02167 6.75H11.0998C15.2998 6.75 17.2498 8.7 17.2498 12.9V14.9781C17.2498 15.535 17.7074 15.9933 18.2608 15.9303C20.9057 15.629 21.9998 14.1831 21.9998 11.1V6.9C21.9998 3.4 20.5998 2 17.0998 2Z" fill="#daa519"/>
                                         </svg>
@@ -204,12 +205,17 @@
                         '>${item.loss}</td>
                         <td class='laingay'>$${item.laingays}</td>
                         <td>$${item.tonglais}</td> 
-                        <td class='text-left'>
-                            <svg onclick="copyIp('${item.ip ?? ``}')" class="copyIp  ${item.ip ?? 'visible'} " id="copyIp" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                <path d="M16 12.9V17.1C16 20.6 14.6 22 11.1 22H6.9C3.4 22 2 20.6 2 17.1V12.9C2 9.4 3.4 8 6.9 8H11.1C14.6 8 16 9.4 16 12.9Z" fill="#daa519"/>
-                                <path d="M17.0998 2H12.8998C9.81668 2 8.37074 3.09409 8.06951 5.73901C8.00649 6.29235 8.46476 6.75 9.02167 6.75H11.0998C15.2998 6.75 17.2498 8.7 17.2498 12.9V14.9781C17.2498 15.535 17.7074 15.9933 18.2608 15.9303C20.9057 15.629 21.9998 14.1831 21.9998 11.1V6.9C21.9998 3.4 20.5998 2 17.0998 2Z" fill="#daa519"/>
-                            </svg>
-                            ${item.ip ?? ''}
+                        <td class=' text-left'>
+                            <div class='td-ip'>
+                            	<div class='sub_ip'>${item.ip || ''}</div>
+                                <div class='sub_copy'>
+                                    <svg onclick="copyIp('${item.ip || ``}')" class="copyIp  ${item.ip || 'visible'} " id="copyIp" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                        <path d="M16 12.9V17.1C16 20.6 14.6 22 11.1 22H6.9C3.4 22 2 20.6 2 17.1V12.9C2 9.4 3.4 8 6.9 8H11.1C14.6 8 16 9.4 16 12.9Z" fill="#daa519"/>
+                                        <path d="M17.0998 2H12.8998C9.81668 2 8.37074 3.09409 8.06951 5.73901C8.00649 6.29235 8.46476 6.75 9.02167 6.75H11.0998C15.2998 6.75 17.2498 8.7 17.2498 12.9V14.9781C17.2498 15.535 17.7074 15.9933 18.2608 15.9303C20.9057 15.629 21.9998 14.1831 21.9998 11.1V6.9C21.9998 3.4 20.5998 2 17.0998 2Z" fill="#daa519"/>
+                                    </svg> 
+                                </div>
+                            </div> 
+                            
                         </td>
                         <td>${item.gmail}</td> 
                         ${lastColumn}
