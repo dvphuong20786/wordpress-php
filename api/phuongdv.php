@@ -34,8 +34,8 @@
           top: 0;           /* luôn dính ở trên */ 
           z-index: 10;      /* ưu tiên hiển thị trên các ô khác */
         }
-        .colOff{background:red; color:white; font-weight:bold;}
-        .colOn{background:#2bbe00; color:white; font-weight:bold;}
+        .colOff{background:red; color:white;  max-width: 24px;  font-size: 12px;   width: 24px;}
+		.colOn{background:#2bbe00; color:white; max-width: 24px;      width: 24px;}
         .colOfftime{ color:red; letter-spacing: -1px; font-size: 14px; }
         .laingay { color: #1c7700ff; font-weight:bold; }
         .copyIp { cursor: pointer; }
@@ -93,14 +93,15 @@
     <table id="data-table">
         <thead>
             <tr>
-                <th>#</th>
+                <th>#</th> 
                 <th>account</th>
                 <th>Loss</th>
                 <th>Lãi ngày</th>
                 <th>Tổng</th>
                 <th>VPS</th>
                 <th>Email</th>
-                <th>P</th>
+                <th>H</th>
+        		<th>V</th>
             </tr>
         </thead>
         <tbody>
@@ -188,12 +189,20 @@
                     danhsachtaikhoan.insertAdjacentHTML('beforeend', element);
 
                     const tr = document.createElement('tr');
-                    const firstColumn = item.seconds_passed > 60
+                    
+                    
+                    const firstColumn = item.seconds_passed > 60 ||  item.vps_passed > 60
                       ? "<td class='colOff'>OFF</td>" 
                       : `<td class='colOn'>${index + 1}</td>`;
+                    
+                    const lastCss = item.seconds_passed > 60 ? 'colOff': '';
                     const lastColumn = item.seconds_passed > 999
-                      ? "<td class='colOfftime'>+999</td>" 
-                      : `<td class='colOntime'>${item.seconds_passed}</td>`;
+                      ? "<td class='colOfftime ${lastCss}'>+999</td>" 
+                      : `<td class='colOntime ${lastCss}'>${item.seconds_passed}</td>`;
+                    
+                    const vpsColumn = item.vps_passed > 60
+                      ? "<td class='colOff'>OFF</td>" 
+                      : `<td class='colOn'>${item.vps_passed}</td>`;
                     
                     // <td><a href="ms-rd:fulladdress=${item.ip ?? ''}">${item.ip ?? ''}</a></td>
                     tr.innerHTML = `
@@ -221,6 +230,7 @@
                         </td>
                         <td>${item.gmail} ($${item.sum_by_gmail})</td> 
                         ${lastColumn}
+                    	${vpsColumn}
                     `;
                     //
                     tbody.appendChild(tr);
