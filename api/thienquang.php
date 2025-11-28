@@ -227,7 +227,7 @@
  
                 }); 
  
-                document.title = "($"+tonglai+") Phương dv";
+                document.title = "($"+tonglai+") Thiên Quang";
                 
             } catch (error) {
                 console.error('Lỗi khi fetch dữ liệu:', error);
