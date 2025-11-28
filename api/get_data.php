@@ -19,7 +19,7 @@ $result = $mysqli->query("
            (UNIX_TIMESTAMP() - VPS_unix) AS vps_passed
     FROM data_log
     WHERE source = '{$source_acc}'
-    ORDER BY loss ASC, gmail ASC, ip DESC, id DESC
+    ORDER BY loss ASC, ip DESC, gmail ASC, id DESC
 ");
 
 $data = [];
