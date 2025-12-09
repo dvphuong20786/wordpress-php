@@ -42,6 +42,7 @@
         .copyIp.visible {display: none;}
         .text-left { text-align: left; }
 		.td-ip { display: flex; flex-direction: row; align-items: center; gap:8px }
+    .taikhoan002 { font-weight:bold; color: red; }
     </style>
     <script type="text/javascript">
         function copyIp(ip){
@@ -207,7 +208,7 @@
                     // <td><a href="ms-rd:fulladdress=${item.ip ?? ''}">${item.ip ?? ''}</a></td>
                     tr.innerHTML = `
                         ${firstColumn}
-                        <td>${item.id}</td>
+                        <td class='${item.tonglais > 210 ? "taikhoan002":""}' >${item.id}</td>
                         <td class='${index == 0 ? "itemdautien ":" "} 
                         ${index == 1 ? "itemdautien2 ":" "} 
                         ${index == 2 ? "itemdautien3 ":" "}
@@ -215,7 +216,7 @@
                         ${(index > 3 && item.loss <= -800) ? "itemdautien4 ":" "}
                         '>${item.loss}</td>
                         <td class='laingay'>$${item.laingays}</td>
-                        <td>$${item.tonglais}</td> 
+                        <td class='${item.tonglais > 210 ? "taikhoan002":""}'>$${item.tonglais}</td> 
                         <td class=' text-left'>
                             <div class='td-ip'>
                             	<div class='sub_ip'>${item.ip || ''}</div>
