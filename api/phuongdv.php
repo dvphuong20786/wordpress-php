@@ -119,12 +119,19 @@
                 phone.style.display = "none"; // ẩn phần tử
             }
         });
-
+        var countError = 0;
         async function fetchData() {
           
             try {
                // 1. Gọi receive.php nhưng không cần chờ kết quả
-                fetch('receive.php').catch(err => console.error('Receive failed:', err));
+                fetch('receive.php')
+                .then(res => { countError = 0; })
+                .catch(err => 
+                {
+                  countError++;     
+                  if (countError > 60) window.location.reload();
+                  console.error('Receive failed:', err);
+                });
 
                 // 2. Lấy dữ liệu JSON từ get_data.php
                 const response = await fetch('get_data.php'); 
