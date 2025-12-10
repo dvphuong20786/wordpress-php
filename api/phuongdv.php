@@ -96,7 +96,7 @@
             <tr>
                 <th>#</th> 
                 <th>account</th>
-                <th>Loss</th>
+                <th>Lệnh (Cen)</th>
                 <th>Lãi ngày</th>
                 <th>Tổng</th>
                 <th>VPS</th>
