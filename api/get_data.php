@@ -18,7 +18,7 @@ $result = $mysqli->query("
            (UNIX_TIMESTAMP() - updated_unix) AS seconds_passed,
            (UNIX_TIMESTAMP() - VPS_unix) AS vps_passed
     FROM data_log
-    WHERE source = '{$source_acc}'
+    WHERE source = '{$source_acc}' AND tonglais > 0
     ORDER BY loss ASC, ip DESC, gmail ASC, id DESC
 ");
 
